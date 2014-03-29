@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .table-responsive
+    table.table.table-hover.table-striped
+      - for (var x in conversations)
+        - var conversation = conversations[x]
+          tr
+            td
+              a(href='/conversation/#{conversation.address}') #{conversation.address}
+            td #{moment(parseInt(conversation.date)*1000)} (<b>#{moment(parseInt(conversation.date)*1000).fromNow()}</b>)
+              span.badge.pull-right= conversation.unread_count
+          tr
+            td(colspan=2)= conversation.text

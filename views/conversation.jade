@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .table-responsive
+    table.table.table-hover.table-striped
+      - for (var x in conversation)
+        - var sms = conversation[x]
+          tr
+            td
+              - if (sms.flags %2 == 0)
+                | #{sms.address}
+              - else
+                | You
+            td #{moment(parseInt(sms.date)*1000)} (<b>#{moment(parseInt(sms.date)*1000).fromNow()}</b>)
+          tr
+            td(colspan=2)= sms.text
